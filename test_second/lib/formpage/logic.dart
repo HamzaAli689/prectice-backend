@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_second/user.dart';
 
-class FormpageLogic extends GetxController {
+class FormLogic extends GetxController {
   TextEditingController namecontroller = TextEditingController();
-
-  Future<void> pushDataOnFirebase() async {
+ String malik = "sab" ;
+  Future<void>pushDataOnFirebase(String imageUrl) async {
     var name = namecontroller.text;
     if (name.isEmpty) {
       Get.snackbar("Error", "Please fill in all fields");
@@ -15,13 +15,14 @@ class FormpageLogic extends GetxController {
 
     try {
       // Ensure Person is instantiated with proper data.
-      Person person = Person(name: name, imageURL: ''); // Assuming 'name' is a required field.
+      Person person = Person(name: name, imageURL: imageUrl); // Assuming 'name' is a required field.
 
       // Add name to Firestore collection "user".
       await FirebaseFirestore.instance.collection("user").doc(name).set(person.toJson());
       Get.snackbar("Success", "Data saved successfully!");
     } catch (e) {
       Get.snackbar("Error", "Failed to save data: $e");
+      return;
     }
   }
 }

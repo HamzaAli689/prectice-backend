@@ -44,39 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAGnfTgltFcJgedpLWrIGSgj9mSYB_t2fU',
-    appId: '1:1049679713510:web:1faebaff001ea1d6695727',
-    messagingSenderId: '1049679713510',
-    projectId: 'newerror-1dff6',
-    authDomain: 'newerror-1dff6.firebaseapp.com',
-    storageBucket: 'newerror-1dff6.appspot.com',
-    measurementId: 'G-M58F02SD3L',
+    apiKey: 'AIzaSyCg-mQjWM3i2FJxU5OC_cqZFzemcSC0NYI',
+    appId: '1:337434287287:web:c1a13cf3095f9bc1b54132',
+    messagingSenderId: '337434287287',
+    projectId: 'tituparty-12b23',
+    authDomain: 'tituparty-12b23.firebaseapp.com',
+    storageBucket: 'tituparty-12b23.appspot.com',
+    measurementId: 'G-YVM6WWEX1N',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAndTcshUHxrFj_gk2kCm1_BTaNhokXol4',
-    appId: '1:1049679713510:android:1768b9460ab5c0a9695727',
-    messagingSenderId: '1049679713510',
-    projectId: 'newerror-1dff6',
-    storageBucket: 'newerror-1dff6.appspot.com',
+    apiKey: 'AIzaSyCPK0sU_vDL9oo8kzo9_KnSSEc5qbFptUE',
+    appId: '1:337434287287:android:d8ef49b7f6ec7fd2b54132',
+    messagingSenderId: '337434287287',
+    projectId: 'tituparty-12b23',
+    storageBucket: 'tituparty-12b23.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyADDYWRnGmK8mY-GwmxKGE3l58JyEdG2XA',
-    appId: '1:1049679713510:ios:2a76a7a01340a7c5695727',
-    messagingSenderId: '1049679713510',
-    projectId: 'newerror-1dff6',
-    storageBucket: 'newerror-1dff6.appspot.com',
+    apiKey: 'AIzaSyDKnJjP9QjVCwvGih88qEeJxKrd802p_ls',
+    appId: '1:337434287287:ios:43982f3300607908b54132',
+    messagingSenderId: '337434287287',
+    projectId: 'tituparty-12b23',
+    storageBucket: 'tituparty-12b23.appspot.com',
     iosBundleId: 'com.example.testSecond',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAGnfTgltFcJgedpLWrIGSgj9mSYB_t2fU',
-    appId: '1:1049679713510:web:36302de085b55225695727',
-    messagingSenderId: '1049679713510',
-    projectId: 'newerror-1dff6',
-    authDomain: 'newerror-1dff6.firebaseapp.com',
-    storageBucket: 'newerror-1dff6.appspot.com',
-    measurementId: 'G-CTSC6H4TXH',
+    apiKey: 'AIzaSyCg-mQjWM3i2FJxU5OC_cqZFzemcSC0NYI',
+    appId: '1:337434287287:web:022cba7ac01d4bb7b54132',
+    messagingSenderId: '337434287287',
+    projectId: 'tituparty-12b23',
+    authDomain: 'tituparty-12b23.firebaseapp.com',
+    storageBucket: 'tituparty-12b23.appspot.com',
+    measurementId: 'G-0SY7DBCG8B',
   );
+
 }
