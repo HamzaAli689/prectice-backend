@@ -1,32 +1,13 @@
 {
   "project_info": {
-    "project_number": "1049679713510",
-    "project_id": "newerror-1dff6",
-    "storage_bucket": "newerror-1dff6.appspot.com"
+    "project_number": "337434287287",
+    "project_id": "tituparty-12b23",
+    "storage_bucket": "tituparty-12b23.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1049679713510:android:dde2196d508561ab695727",
-        "android_client_info": {
-          "package_name": "com.newerror.app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAndTcshUHxrFj_gk2kCm1_BTaNhokXol4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1049679713510:android:1768b9460ab5c0a9695727",
+        "mobilesdk_app_id": "1:337434287287:android:d8ef49b7f6ec7fd2b54132",
         "android_client_info": {
           "package_name": "com.test.app"
         }
@@ -34,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAndTcshUHxrFj_gk2kCm1_BTaNhokXol4"
+          "current_key": "AIzaSyCPK0sU_vDL9oo8kzo9_KnSSEc5qbFptUE"
         }
       ],
       "services": {
