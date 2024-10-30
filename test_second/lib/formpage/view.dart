@@ -18,6 +18,7 @@ class pickDetails extends StatefulWidget {
 
 class _pickDetailsState extends State<pickDetails> {
   Uint8List? bytesFromPicker;
+  final logic = Get.put(() => FormLogic());
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _pickDetailsState extends State<pickDetails> {
                 height: 20,
               ),
               TextFormField(
-                controller: FormpageLogic().namecontroller,
+                controller: FormLogic().namecontroller,
                 decoration: InputDecoration(
                     label: Text("Name"),
                     border: OutlineInputBorder(
@@ -67,9 +68,10 @@ class _pickDetailsState extends State<pickDetails> {
                 height: 20,
               ),
               InkWell(
-                onTap: () {
-                  FormpageLogic().pushDataOnFirebase();
-                 Imagepicker(bytesFromPicker!, "Hamza");
+                onTap: () async{
+                  String? imageUrl =await Imagepicker(bytesFromPicker!, "Hamza");
+                 if(imageUrl != null){
+                 }
                   Get.to(HomeScreen());
                 },
                 child: Container(
@@ -91,6 +93,9 @@ class _pickDetailsState extends State<pickDetails> {
       ),
     );
   }
+}
+
+extension on FormLogic Function() {
 }
 
 
