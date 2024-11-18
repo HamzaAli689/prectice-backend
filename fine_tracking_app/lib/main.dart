@@ -1,5 +1,5 @@
-import 'package:fine_tracking_app/screens/home_page.dart';
-import 'package:fine_tracking_app/screens2/login/signup_screen.dart';
+import 'package:fine_tracking_app/screens2/home_page.dart';
+import 'package:fine_tracking_app/screens2/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Fine Manager',
       //theme: ThemeData.dark(),
       home: LoginScreen(),
+     // home: HomePage(),
     );
   }
 }

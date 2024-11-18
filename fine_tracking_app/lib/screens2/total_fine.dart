@@ -9,7 +9,7 @@ class TotalFinesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Total Fines'),
+        title: Text('Total Fines',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.blueGrey[800],
       ),
       body: Padding(

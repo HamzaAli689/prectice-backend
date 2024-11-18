@@ -1,8 +1,10 @@
-import 'package:fine_tracking_app/screens2/login/signup_screen.dart';
-import 'package:fine_tracking_app/screens2/user_dashboard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fine_tracking_app/screens2/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
+import 'home_page.dart';
 
 
 class SignupScreen extends StatefulWidget {
@@ -11,9 +13,13 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //final firestore = FirebaseFirestore.instance;
+
+  //bool isLoading = false;
 
   // Future<void> _login() async {
   //   try {
@@ -28,12 +34,20 @@ class _SignupScreenState extends State<SignupScreen> {
   // }
 
   Future<void> _signup() async {
+    // setState(() {
+    //   isLoading = true;  // Show loading spinner
+    // });
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-      Get.to(UserDashboard());  // Navigate to Dashboard after successful signup
+      // await firestore.collection('users').doc(userCredential.user!.uid).set({
+      //   'name': nameController.text,
+      //   'email': emailController.text,
+      //   'uid': userCredential.user!.uid,
+      // });
+      Get.to(HomePage());  // Navigate to Dashboard after successful signup
     } catch (e) {
       Get.snackbar('Error', e.toString(), backgroundColor: Colors.red, colorText: Colors.white);
     }
@@ -75,8 +89,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        const TextField(
-                          decoration: InputDecoration(
+                        TextField(style: const TextStyle(color: Colors.white),
+                          controller: nameController,
+                          decoration: const InputDecoration(
                             labelText: 'User Name',
                             labelStyle: TextStyle(color: Colors.white70),
                             enabledBorder: UnderlineInputBorder(
@@ -88,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        TextField(
+                        TextField(style: TextStyle(color: Colors.white),
                           controller: emailController,
                           decoration: InputDecoration(
                             labelText: 'Email',
@@ -102,7 +117,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        TextField(
+                        TextField(style: TextStyle(color: Colors.white),
                           controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(

@@ -9,7 +9,7 @@ class LateCountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Late Count'),
+        title: Text('Late Count',style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blueGrey[800],
       ),
       body: Padding(

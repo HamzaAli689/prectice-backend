@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
+import '../home_page.dart';
 import '../signup_screen.dart';
 import '../user_dashboard.dart';
 
@@ -21,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text,
         password: _passwordController.text,
       );
-      Get.to(UserDashboard());  // Navigate to Dashboard after successful login
+      Get.to(HomePage());  // Navigate to Dashboard after successful login
     } catch (e) {
       Get.snackbar('Error', e.toString(), backgroundColor: Colors.red, colorText: Colors.white);
     }
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        TextField(
+                        TextField(style: TextStyle(color: Colors.white),
                           controller: _emailController,
                           decoration: InputDecoration(
                             labelText: 'Email',
@@ -89,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        TextField(
+                        TextField(style: TextStyle(color: Colors.white),
                           controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
