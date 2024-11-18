@@ -41,6 +41,8 @@ dependencies:
   firebase_storage:
   cloud_firestore:
   gap:
+  image_picker:
+  image_picker_web:
 
 dev_dependencies:
   flutter_test:

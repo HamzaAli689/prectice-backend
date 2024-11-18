@@ -2,6 +2,7 @@ import 'package:fine_tracking_app/screens2/pending_fines.dart';
 import 'package:fine_tracking_app/screens2/total_fine.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import '../admin_screens/AdminDashboard.dart';
 import 'late_count_screen.dart'; // Import the Late Count Screen
 import 'history_page.dart'; // Import the History Page
 import 'user_controller.dart'; // Assuming this is your controller
@@ -14,13 +15,13 @@ class UserDashboard extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: Text('Dashboard',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.blueGrey[800],
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.admin_panel_settings,color: Colors.white,),
             onPressed: () {
-              // Navigate to Notification Center (You can implement this screen similarly)
+              Get.to(() => AdminDashboardScreen());
             },
           ),
         ],
@@ -75,7 +76,7 @@ class UserDashboard extends StatelessWidget {
                     onTap: () {
                       Get.to(PendingFinesScreen());
                     },
-                    child: _buildCard('Pending Fines', '\$40', Icons.pending),
+                    child: _buildCard('Pending Fines', '\$${userController.pendingFines.value}', Icons.pending),
                   ),
                   Obx(() {
                     return GestureDetector(
