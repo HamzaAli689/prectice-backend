@@ -1,4 +1,5 @@
 import 'package:fine_tracking_app/screens2/pending_fines.dart';
+import 'package:fine_tracking_app/screens2/signup_screen.dart';
 import 'package:fine_tracking_app/screens2/total_fine.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class UserDashboard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'John Doe',
+                      "Hamza Ali",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
