@@ -1,5 +1,4 @@
 import 'package:fine_tracking_app/screens2/pending_fines.dart';
-import 'package:fine_tracking_app/screens2/signup_screen.dart';
 import 'package:fine_tracking_app/screens2/total_fine.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
