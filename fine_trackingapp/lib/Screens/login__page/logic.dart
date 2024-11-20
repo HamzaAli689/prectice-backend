@@ -17,7 +17,7 @@ class Login_PageLogic extends GetxController {
         email: emailCL.text,
         password: passwordCL.text,
       );
-      Get.to(Home_Page());  // Navigate to Dashboard after successful login
+      Get.to(UserDashboardPage());  // Navigate to Dashboard after successful login
     } catch (e) {
       Get.snackbar('Error', e.toString(), backgroundColor: Colors.red, colorText: Colors.white);
     }
