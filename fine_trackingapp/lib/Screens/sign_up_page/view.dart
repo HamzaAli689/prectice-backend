@@ -1,15 +1,26 @@
+import 'dart:io';
+
 import 'package:fine_trackingapp/Screens/login__page/view.dart';
 import 'package:fine_trackingapp/widgets/my_buttons.dart';
 import 'package:fine_trackingapp/widgets/mytext_fields.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 
 import 'logic.dart';
 
-class SignUp_page extends StatelessWidget {
+class SignUp_page extends StatefulWidget {
   SignUp_page({Key? key}) : super(key: key);
 
+  @override
+  State<SignUp_page> createState() => _SignUp_pageState();
+}
+
+class _SignUp_pageState extends State<SignUp_page> {
   final SignUp_pageLogic logic = Get.put(SignUp_pageLogic());
+
+  Uint8List? bytesFromPicker;
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +58,43 @@ class SignUp_page extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
+                        InkWell(
+                          onTap: () async {
+                            if (kIsWeb) {
+                              bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
+                              setState(() {});
+                            } else if (Platform.isAndroid || Platform.isIOS) {
+                              print("This is Android");
+                            }
+                          },
+                          child: Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: Colors.white),
+                            child: ClipOval(
+                              child: bytesFromPicker == null
+                                  ? SizedBox()
+                                  : Image.memory(bytesFromPicker!),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
                         MytextFields(lable: "User Name", mycontroller: logic.nameCS, obscureText: false),
-                         SizedBox(height: 15),
+                         const SizedBox(height: 15),
                         MytextFields(lable: "Email", mycontroller: logic.emailCS, obscureText: false),
                         const SizedBox(height: 15),
                         MytextFields(lable: "Password", mycontroller: logic.passwordCS, obscureText: true),
                         const SizedBox(height: 20),
-                        MyButtons(onpress: (){
-                          logic.CreateUseronFirebase();
+                        MyButtons(onpress: ()async{
+                          String? imageUrl= await logic.imagePicker(bytesFromPicker!, "Hamza");
+
+                          if(imageUrl != null){
+                            logic.CreateUseronFirebase(imageUrl);
+                          }
+                          logic.CreateUseronFirebase("");
+                          Get.snackbar("SignUp", "SignUp Successfully");
                         }, title: "Sign UP"),
                          SizedBox(height: 10),
                         TextButton(
