@@ -10,7 +10,7 @@ class Home_PageLogic extends GetxController {
   var lateCount = 0.obs;  // Observable state for late count
   var pendingFines = 0.0.obs;  // Observable state for pending fines
   var fineRate = 1.0.obs;  // Fine rate per minute (could be set by the admin)
-  var lateLimit = 3.obs;  // Maximum lateness limit (could be set by the admin)
+  var lateLimit = 5.obs;  // Maximum lateness limit (could be set by the admin)
 
   final TextEditingController fineC = TextEditingController();
 
