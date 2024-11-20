@@ -62,6 +62,7 @@ class Login_Page extends StatelessWidget {
                         MyButtons(
                           onpress: () {
                             logic.loginonfirebase();
+                            Get.snackbar("Login", "Login Succesfully");
                           },
                           title: 'Login',
                         ),
@@ -70,7 +71,7 @@ class Login_Page extends StatelessWidget {
                           onPressed: () {
                             Get.to(SignUp_page());
                           },
-                          child: Text(
+                          child: const Text(
                             'Don\'t have an account? Sign Up',
                             style: TextStyle(color: Colors.cyanAccent),
                           ),
