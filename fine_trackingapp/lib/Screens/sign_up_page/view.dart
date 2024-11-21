@@ -18,7 +18,7 @@ class SignUp_page extends StatefulWidget {
 }
 
 class _SignUp_pageState extends State<SignUp_page> {
-  final SignUp_pageLogic logic = Get.put(SignUp_pageLogic());
+  final SignUpPageLogic logic = Get.put(SignUpPageLogic());
 
   Uint8List? bytesFromPicker;
 
@@ -91,15 +91,14 @@ class _SignUp_pageState extends State<SignUp_page> {
                           String? imageUrl= await logic.imagePicker(bytesFromPicker!, "Hamza");
 
                           if(imageUrl != null){
-                            logic.CreateUseronFirebase(imageUrl);
+                            logic.createUserOnFirebase(imageUrl);
                           }
-                          logic.CreateUseronFirebase("");
                           Get.snackbar("SignUp", "SignUp Successfully");
                         }, title: "Sign UP"),
                          SizedBox(height: 10),
                         TextButton(
                           onPressed: (){
-                            Get.to(Login_Page());
+                            Get.to(() => Login_Page());
                           },
                           child: const Text(
                             'Already hav an account? Sign In',
