@@ -1,8 +1,9 @@
+import 'package:fine_trackingapp/Screens/login__page/view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'Screens/login__page/view.dart';
+import 'Screens/sign_up_page/view.dart';
+import 'Screens/user_dashboard/view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -10,8 +11,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -20,9 +22,22 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Fine Manager',
-      //theme: ThemeData.dark(),
-      home: Login_Page(),
-      // home: HomePage(),
+      theme: ThemeData.dark(),
+      initialRoute: '/Login_page',
+      getPages: [
+        GetPage(
+          name: '/SignUp_page',
+          page: () =>  SignUp_page(),
+        ),
+        GetPage(
+          name: '/Login_page',
+          page: () =>  Login_Page(),
+        ),
+        GetPage(
+          name: '/UserDashboardPage',
+          page: () => UserDashboardPage(),
+        ),
+      ],
     );
   }
 }
