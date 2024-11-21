@@ -12,55 +12,54 @@ class UserDashboardPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
       appBar: AppBar(
-        title: Text(
-          'Dashboard',
+        title: const Text(
+          'User Dashboard',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.blueGrey[800],
         actions: [
           IconButton(
-            icon: Icon(
-              Icons.admin_panel_settings,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.refresh, color: Colors.white),
             onPressed: () {
-              // Uncomment and implement navigation to the admin dashboard screen
-              // Get.to(() => AdminDashboardScreen());
+              logic.getUsersFromFirebase(); // Refresh data on button press
             },
           ),
         ],
       ),
       body: Obx(() {
         if (logic.userList.isEmpty) {
-          return Center(
-            child: CircularProgressIndicator(color: Colors.white),
+          return const Center(
+            child: Text(
+              "No users found. Try refreshing.",
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
           );
         }
-        return Expanded(
-          child: ListView.builder(
-            itemCount: logic.userList.length,
-            itemBuilder: (context, i) {
-              final data = logic.userList[i];
-              return Card(
-                color: Colors.blueGrey[800],
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(data.imageUrl),
-                    onBackgroundImageError: (_, __) => Icon(Icons.person),
-                  ),
-                  title: Text(
-                    data.name,
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  subtitle: Text(
-                    data.email,
-                    style: TextStyle(color: Colors.white70),
-                  ),
+
+        return ListView.builder(
+          itemCount: logic.userList.length,
+          itemBuilder: (context, index) {
+            final user = logic.userList[index];
+
+            return Card(
+              color: Colors.blueGrey[800],
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(user.imageUrl),
+                  onBackgroundImageError: (_, __) => const Icon(Icons.person, color: Colors.white),
                 ),
-              );
-            },
-          ),
+                title: Text(
+                  user.name,
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                subtitle: Text(
+                  user.email,
+                  style: const TextStyle(color: Colors.white70, fontSize: 14),
+                ),
+              ),
+            );
+          },
         );
       }),
     );
