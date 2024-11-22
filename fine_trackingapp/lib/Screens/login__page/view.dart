@@ -62,7 +62,7 @@ class Login_Page extends StatelessWidget {
                         MyButtons(
                           onpress: () {
                             logic.loginonfirebase();
-                            Get.snackbar("Login", "Login Succesfully");
+                            //Get.snackbar("Login", "Login Succesfully");
                           },
                           title: 'Login',
                         ),
