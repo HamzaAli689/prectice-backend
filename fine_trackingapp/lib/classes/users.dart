@@ -25,10 +25,10 @@ class Users {
   // Create a User object from a Map (fromJson)
   factory Users.fromJson(Map<String, dynamic> json) {
     return Users(
-      name: json['name'] as String,
-      email: json['email'] as String,
-      password: json['password'] as String,
-      imageUrl: json['imageUrl'] as String,
+      name: json['name'] as String? ?? '', // Provide default value if null
+      email: json['email'] as String? ?? '',
+      password: json['password'] as String? ?? '',
+      imageUrl: json['imageUrl'] as String? ?? '',
     );
   }
 }

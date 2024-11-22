@@ -1,3 +1,4 @@
+import 'package:fine_trackingapp/Screens/admin_panel/view.dart';
 import 'package:fine_trackingapp/Screens/login__page/view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/Login_page',
           page: () =>  Login_Page(),
+        ),
+        GetPage(
+          name: '/AdminPanelPage',
+          page: () =>  AdminPanelPage(),
         ),
         GetPage(
           name: '/UserDashboardPage',
