@@ -39,10 +39,10 @@ class SignUpPageLogic extends GetxController {
       );
 
       // Save user data in Firestore
-      await firestore.collection('users').doc(userCredential.user!.uid).set(myUser.toJson());
+      await firestore.collection('users').doc(nameCS.text).set(myUser.toJson());
 
       // Navigate to the user dashboard after successful signup
-      Get.offAll(() => UserDashboardPage());
+      Get.to(() => UserDashboardPage());
     } catch (e) {
       // Show error message on failure
       Get.snackbar(
