@@ -36,6 +36,7 @@ class SignUpPageLogic extends GetxController {
         email: emailCS.text.trim(),
         password: passwordCS.text.trim(),
         imageUrl: imageUrl,
+
       );
 
       // Save user data in Firestore

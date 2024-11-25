@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../home__page/view.dart';
 import '../user_dashboard/view.dart';
 
 class Login_PageLogic extends GetxController {

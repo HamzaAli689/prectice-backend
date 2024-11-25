@@ -24,6 +24,8 @@ class UserDashboardLogic extends GetxController {
     return lateMinutes * ratePerMinute;  // Regular fine calculation
   }
 
+
+
   // Method to update fines
   void updateFines(int lateMinutes) {
     // Calculate fine based on current lateness
@@ -41,16 +43,6 @@ class UserDashboardLogic extends GetxController {
   void resetLateCount() {
     lateCount.value = 0;  // Reset late count
   }
-
-
-
-
-
-
-
-
-
-
 
   List userList = <Users>[].obs;
   Future<List> getUsersFromFirebase() async {

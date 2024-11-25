@@ -4,12 +4,14 @@ class Users {
   String password;
   String imageUrl;
 
+
   // Constructor
   Users({
     required this.name,
     required this.email,
     required this.password,
     required this.imageUrl,
+
   });
 
   // Convert a User object into a Map (toJson)
@@ -29,6 +31,7 @@ class Users {
       email: json['email'] as String? ?? '',
       password: json['password'] as String? ?? '',
       imageUrl: json['imageUrl'] as String? ?? '',
+
     );
   }
 }

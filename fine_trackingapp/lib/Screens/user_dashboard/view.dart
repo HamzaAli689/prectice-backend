@@ -1,16 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fine_trackingapp/Screens/admin_panel/view.dart';
-import 'package:fine_trackingapp/classes/users.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../admin_panel/logic.dart';
+import '../sign_up_page/logic.dart';
 import 'logic.dart';
 
 class UserDashboardPage extends StatelessWidget {
   UserDashboardPage({Key? key}) : super(key: key);
 
   final UserDashboardLogic logic = Get.put(UserDashboardLogic());
-  final AdminPanelLogic logic1 = Get.put(AdminPanelLogic());
+  final SignUpPageLogic logic1 = Get.put(SignUpPageLogic());
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +103,20 @@ class UserDashboardPage extends StatelessWidget {
                                       TextField(
                                         controller: logic.timeC,
                                         decoration: const InputDecoration(
-                                          labelText: "Late Limit",
+                                          labelText: "Late Time",
                                           hintText: "Enter Late Time",
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                                          ),
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                      ),
+                                      SizedBox(height: 15,),
+                                      TextField(
+                                        controller: logic.fineC,
+                                        decoration: const InputDecoration(
+                                          labelText: "Fine ",
+                                          hintText: "Enter Fine amount",
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(Radius.circular(30)),
                                           ),
@@ -116,19 +127,23 @@ class UserDashboardPage extends StatelessWidget {
                                   ),
                                   confirm: ElevatedButton(
                                     onPressed: () async {
-                                      double finePerMinute = double.tryParse(logic.fineC.text) ?? 0.0;
+
+                                      double finePerMinute =
+                                          double.tryParse(logic.fineC.text) ?? 0.0;
                                       int lateMinutes = int.tryParse(logic.timeC.text) ?? 0;
 
-                                      // Update the fine calculation in UserController and Firebase
                                       logic.fineRate.value = finePerMinute;
                                       logic.updateFines(lateMinutes);
 
-                                      // Save the fine per minute to Firebase
-                                      await FirebaseFirestore.instance.collection('rules').doc('fineSettings').set({
-                                        'finePerMinute': finePerMinute,
-                                      });
+                                      // Navigate to the UserDashboard to show the total fine
+                                      // Get.to(() => UserDashboard());
 
-                                      Get.back(); // Close the dialog
+                                      // Save the fine per minute to Firebase
+                                      // await FirebaseFirestore.instance.collection('users').doc(logic1.nameCS.text).set({
+                                      //  'finePerMinute': finePerMinute,
+                                      // });
+
+                                      Get.back();
                                     },
                                     child: Text("Confirm"),
                                   ),
