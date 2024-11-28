@@ -40,6 +40,9 @@ dependencies:
   firebase_core:
   firebase_auth:
   cloud_firestore:
+  qr_code_scanner: ^1.0.0
+  image_picker: ^0.8.5+3
+  qr_code_tools:
 
 
 dev_dependencies:
@@ -65,8 +68,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+     - assets/Animation-Scanner.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
