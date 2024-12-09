@@ -1,10 +1,10 @@
-class User {
+class MyUsers {
   String id;
   String name;
   String? imageUrl;
   DateTime? createdAt;
 
-  User({required this.id, required this.name, this.imageUrl, this.createdAt});
+  MyUsers({required this.id, required this.name, this.imageUrl, this.createdAt});
 
   // Converts a User instance to a JSON map
   Map<String, dynamic> toJson() {
@@ -17,8 +17,8 @@ class User {
   }
 
   // Creates a User instance from a JSON map
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory MyUsers.fromJson(Map<String, dynamic> json) {
+    return MyUsers(
       id: json['id'] as String,
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String?,
