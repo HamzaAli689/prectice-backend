@@ -22,6 +22,7 @@ class LoginScreenPage extends StatefulWidget {
 
 class _LoginScreenPageState extends State<LoginScreenPage> {
   final Login_screenLogic logic = Get.put(Login_screenLogic());
+  Uint8List? bytesFromPicker;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +30,11 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
 
     return Scaffold(
       backgroundColor: Colors.yellow,
-      body: Container(
-        child: screenType.largerThan(TABLET)
-            ? showWebLoginScreen(context)
-            : screenType.largerThan(MOBILE)
-                ? showTabLoginScreen(context)
-                : showMobileLoginScreen(context),
-      ),
+      body: screenType.largerThan(TABLET)
+          ? showWebLoginScreen(context)
+          : screenType.largerThan(MOBILE)
+          ? showTabLoginScreen(context)
+          : showMobileLoginScreen(context),
     );
   }
 
@@ -43,15 +42,15 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
     return myForm(context);
   }
 
-  Widget showTabLoginScreen(context) {
+  Widget showTabLoginScreen(BuildContext context) {
     return myForm(context);
   }
 
-  Widget showWebLoginScreen(context) {
+  Widget showWebLoginScreen(BuildContext context) {
     return myForm(context);
   }
 
-  myForm(context) {
+  Widget myForm(BuildContext context) {
     return Obx(() {
       return logic.issignin.value
           ? mySignInForm(context)
@@ -59,86 +58,87 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
     });
   }
 
-  mySignInForm(context) {
+  Widget mySignInForm(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Gap(16),
+          const Gap(16),
           Text(
             "My Sign IN Form",
             style: mytextstyles.textStyle1L,
           ),
-          Gap(16),
+          const Gap(16),
           myText_fields(
             mycontroller: logic.emailcontroller,
             lable: 'Enter Email',
           ),
-          Gap(16),
+          const Gap(16),
           myText_fields(
             mycontroller: logic.passcontroller,
             lable: 'Enter Password',
           ),
-          Gap(16),
+          const Gap(16),
           mybuttons(
             myfunction: () async {
-              print("My email is ${logic.emailcontroller.text}");
-              print("My Password is ${logic.passcontroller.text}");
               await logic.loginUser();
-
-              print("User login Successfully");
+              print("User logged in successfully");
             },
             mybtnwidget: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Icon(Icons.ads_click), Gap(6), Text("SignIN")],
             ),
           ),
-          Gap(16),
+          const Gap(16),
           TextButton(
-              onPressed: () {
-                logic.issignin.value = !logic.issignin.value;
-              },
-              child: Text(
-                "Not Signed In? Signed UP",
-                style: mytextstyles.textStyle2M,
-              )),
+            onPressed: () {
+              logic.issignin.value = !logic.issignin.value;
+            },
+            child: Text(
+              "Not Signed In? Sign Up",
+              style: mytextstyles.textStyle2M,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Uint8List? bytesFromPicker;
-
-  mySignUpForm(context) {
+  Widget mySignUpForm(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Gap(16),
+          const Gap(16),
           Text(
             "My Sign UP Form",
             style: mytextstyles.textStyle1L,
           ),
-          Gap(16),
+          const Gap(16),
           InkWell(
             onTap: () async {
               if (kIsWeb) {
                 bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
                 setState(() {});
               } else if (Platform.isAndroid || Platform.isIOS) {
-                print("This is android Mobile");
+                print("This is a mobile platform");
+                // Implement mobile image picker if needed
               }
             },
             child: Container(
               height: 150,
               width: 150,
               decoration: BoxDecoration(
-                  color: Colors.red, borderRadius: BorderRadius.circular(100)),
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(100),
+              ),
               child: ClipOval(
                 child: bytesFromPicker == null
-                    ? SizedBox()
+                    ? const SizedBox()
                     : Image.memory(
-                        bytesFromPicker!,
-                        fit: BoxFit.cover,
-                      ),
+                  bytesFromPicker!,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -157,17 +157,19 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
             mycontroller: logic.passcontroller,
             lable: 'Enter Password',
           ),
-          Gap(16),
+          const Gap(16),
           mybuttons(
             myfunction: () async {
-              await ImagePicker(bytesFromPicker!, "HamzaAli");
-              print("My UserName is ${logic.usercontroller.text}");
-              print("My email is ${logic.emailcontroller.text}");
-              print("My Password is ${logic.passcontroller.text}");
-
-              logic.createUserOnFirebase();
-              if (kDebugMode) {
-                print("user loged in");
+              if (bytesFromPicker != null) {
+                String? profileImageUrl =
+                await uploadImage(bytesFromPicker!, "HamzaAli");
+                if (profileImageUrl != null) {
+                  await logic.createUserOnFirebase(profileImageUrl);
+                } else {
+                  print("Image couldn't be uploaded");
+                }
+              } else {
+                print("No image selected");
               }
             },
             mybtnwidget: const Row(
@@ -175,33 +177,33 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
               children: [Icon(Icons.ads_click), Gap(6), Text("SignUP")],
             ),
           ),
-          Gap(16),
+          const Gap(16),
           TextButton(
-              onPressed: () {
-                logic.issignin.value = !logic.issignin.value;
-              },
-              child: Text(
-                "Alrady Signd UP? Signed IN",
-                style: mytextstyles.textStyle2M,
-              )),
+            onPressed: () {
+              logic.issignin.value = !logic.issignin.value;
+            },
+            child: Text(
+              "Already Signed Up? Sign In",
+              style: mytextstyles.textStyle2M,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Future<void> ImagePicker(Uint8List image, String folderpath) async {
-    String filename = "HamzaAli.jpg";
+  Future<String?> uploadImage(Uint8List image, String folderPath) async {
     try {
-      final Reference ref = await FirebaseStorage.instance
+      final Reference ref = FirebaseStorage.instance
           .ref()
-          .child(folderpath)
-          .child(filename);
-      ref.putData(image);
-      final String mydownloads = await ref.getDownloadURL();
-      print(mydownloads);
-    } on Exception catch (e) {
-      print(e);
-      // TODO
+          .child(folderPath)
+          .child("HamzaAli.jpg");
+      await ref.putData(image);
+      final String downloadUrl = await ref.getDownloadURL();
+      return downloadUrl;
+    } catch (e) {
+      print("Error uploading image: $e");
+      return null;
     }
   }
 }
