@@ -40,7 +40,7 @@ class Login_screenLogic extends GetxController {
 
         await FirebaseFirestore.instance
             .collection("Users")
-            .doc(myUserId)
+            .doc(usercontroller.text.trim())
             .set(myUserData.toJson());
 
         Get.to(() => HomePage(), transition: Transition.leftToRight);
