@@ -53,16 +53,21 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
 
   myForm(context) {
     return Obx(() {
-     return logic.issignin.value? mySignInForm(context):mySignUpForm(context);
+      return logic.issignin.value
+          ? mySignInForm(context)
+          : mySignUpForm(context);
     });
   }
 
-  mySignInForm(context){
+  mySignInForm(context) {
     return Center(
       child: Column(
         children: [
           Gap(16),
-          Text("My Sign IN Form",style: mytextstyles.textStyle1L,),
+          Text(
+            "My Sign IN Form",
+            style: mytextstyles.textStyle1L,
+          ),
           Gap(16),
           myText_fields(
             mycontroller: logic.emailcontroller,
@@ -75,26 +80,27 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
           ),
           Gap(16),
           mybuttons(
-            myfunction: () async{
+            myfunction: () async {
               print("My email is ${logic.emailcontroller.text}");
               print("My Password is ${logic.passcontroller.text}");
-             await logic.loginUser();
+              await logic.loginUser();
 
               print("User login Successfully");
             },
             mybtnwidget: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.ads_click),
-                Gap(6),
-                Text("SignIN")
-              ],
+              children: [Icon(Icons.ads_click), Gap(6), Text("SignIN")],
             ),
           ),
           Gap(16),
-          TextButton(onPressed: (){
-            logic.issignin.value = !logic.issignin.value;
-          }, child: Text("Not Signed In? Signed UP",style: mytextstyles.textStyle2M,)),
+          TextButton(
+              onPressed: () {
+                logic.issignin.value = !logic.issignin.value;
+              },
+              child: Text(
+                "Not Signed In? Signed UP",
+                style: mytextstyles.textStyle2M,
+              )),
         ],
       ),
     );
@@ -102,20 +108,22 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
 
   Uint8List? bytesFromPicker;
 
-  mySignUpForm(context){
+  mySignUpForm(context) {
     return Center(
       child: Column(
         children: [
           Gap(16),
-          Text("My Sign UP Form",style: mytextstyles.textStyle1L,),
+          Text(
+            "My Sign UP Form",
+            style: mytextstyles.textStyle1L,
+          ),
           Gap(16),
           InkWell(
-            onTap: ()async{
-              if(kIsWeb){
+            onTap: () async {
+              if (kIsWeb) {
                 bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
                 setState(() {});
-              }
-              else if(Platform.isAndroid || Platform.isIOS){
+              } else if (Platform.isAndroid || Platform.isIOS) {
                 print("This is android Mobile");
               }
             },
@@ -123,10 +131,15 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
               height: 150,
               width: 150,
               decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(100)
+                  color: Colors.red, borderRadius: BorderRadius.circular(100)),
+              child: ClipOval(
+                child: bytesFromPicker == null
+                    ? SizedBox()
+                    : Image.memory(
+                        bytesFromPicker!,
+                        fit: BoxFit.cover,
+                      ),
               ),
-              child: ClipOval(child: bytesFromPicker == null?SizedBox():Image.memory(bytesFromPicker!),),
             ),
           ),
           const Gap(16),
@@ -146,8 +159,8 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
           ),
           Gap(16),
           mybuttons(
-            myfunction: () {
-              ImagePicker(bytesFromPicker!, "HamzaAli");
+            myfunction: () async {
+              await ImagePicker(bytesFromPicker!, "HamzaAli");
               print("My UserName is ${logic.usercontroller.text}");
               print("My email is ${logic.emailcontroller.text}");
               print("My Password is ${logic.passcontroller.text}");
@@ -159,26 +172,30 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
             },
             mybtnwidget: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.ads_click),
-                Gap(6),
-                Text("SignUP")
-              ],
+              children: [Icon(Icons.ads_click), Gap(6), Text("SignUP")],
             ),
           ),
           Gap(16),
-          TextButton(onPressed: (){
-            logic.issignin.value = !logic.issignin.value;
-          }, child: Text("Alrady Signd UP? Signed IN",style: mytextstyles.textStyle2M,)),
+          TextButton(
+              onPressed: () {
+                logic.issignin.value = !logic.issignin.value;
+              },
+              child: Text(
+                "Alrady Signd UP? Signed IN",
+                style: mytextstyles.textStyle2M,
+              )),
         ],
       ),
     );
   }
 
-  Future<void> ImagePicker(Uint8List image,String folderpath)async {
+  Future<void> ImagePicker(Uint8List image, String folderpath) async {
     String filename = "HamzaAli.jpg";
     try {
-      final Reference ref = await FirebaseStorage.instance.ref().child(folderpath).child(filename);
+      final Reference ref = await FirebaseStorage.instance
+          .ref()
+          .child(folderpath)
+          .child(filename);
       ref.putData(image);
       final String mydownloads = await ref.getDownloadURL();
       print(mydownloads);
@@ -188,5 +205,3 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
     }
   }
 }
-
-
