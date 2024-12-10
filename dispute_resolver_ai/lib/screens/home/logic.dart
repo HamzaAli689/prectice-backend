@@ -13,7 +13,7 @@ class HomeLogic extends GetxController {
       print(element.data());
       MyUsers myuser = MyUsers.fromJson(element.data() as Map<String, dynamic>);
       print(myuser.name);
-      myusers.add(myuser);
+     // myusers.add(myuser);
     }
   }
 
