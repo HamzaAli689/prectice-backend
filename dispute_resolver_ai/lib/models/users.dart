@@ -1,28 +1,37 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class MyUsers {
-  String id;
-  String name;
-  String? imageUrl;
-  DateTime? createdAt;
+  final String id;
+  final String name;
+  final String imageUrl;
+  final DateTime? createdAt;
 
-  MyUsers({required this.id, required this.name, this.imageUrl, this.createdAt});
+  MyUsers({
+    required this.id,
+    required this.name,
+    required this.imageUrl,
+    this.createdAt,
+  });
 
-  // Converts a User instance to a JSON map
+  factory MyUsers.fromJson(Map<String, dynamic> json) {
+    return MyUsers(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      imageUrl: json['imageUrl'] ?? '',
+      createdAt: json['createdAt'] != null
+          ? (json['createdAt'] is Timestamp
+          ? (json['createdAt'] as Timestamp).toDate()
+          : DateTime.parse(json['createdAt']))
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'name': name,
       'imageUrl': imageUrl,
-      'createdAt' : createdAt,
+      'createdAt': createdAt != null ? createdAt!.toIso8601String() : null,
     };
-  }
-
-  // Creates a User instance from a JSON map
-  factory MyUsers.fromJson(Map<String, dynamic> json) {
-    return MyUsers(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      imageUrl: json['imageUrl'] as String?,
-      createdAt: json['createdAt'] as DateTime?,
-    );
   }
 }
