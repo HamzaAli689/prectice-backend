@@ -12,33 +12,62 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text("Home Screen"),
-      actions: [
-        IconButton(onPressed: ()async{
-         var result = await showDialog(context: context, builder: (context){
-            return MyAlertBox(title: 'Signing Out'.tr, content: 'Are you sure to LogOut?',);
-          });
-         if(result == true){
-           var myco = Get.find<Login_screenLogic>();
-           await myco.logOut();
-           myco.issignin.value = true;
-           Get.snackbar("Success", "Sign Out Successfully");
-           print("Sign Out Successfully");
-         }
-        }, icon: Icon(Icons.logout))
-      ],
+      appBar: AppBar(
+        title: Text("Home Screen"),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                var result = await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return MyAlertBox(
+                        title: 'Signing Out'.tr,
+                        content: 'Are you sure to LogOut?',
+                      );
+                    });
+                if (result == true) {
+                  var myco = Get.find<Login_screenLogic>();
+                  await myco.logOut();
+                  myco.issignin.value = true;
+                  Get.snackbar("Success", "Sign Out Successfully");
+                  print("Sign Out Successfully");
+                }
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: Center(
         child: Column(
           children: [
             Text("This is my Home Screen"),
-            TextButton(onPressed: () async{
-              await logic.GetUserFromFirebase();
-            }, child: Text("Get User"))
+            Container(
+              height: size.height * 0.75,
+              width: size.width,
+              padding: EdgeInsets.all(16),
+              margin: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: showUser(context),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  showUser(context) {
+    return Container(
+      height: 800,
+      width: 600,
+      child: ListView.builder(
+          itemCount: logic.myusers.length,
+          itemBuilder: (context, i) {
+            return ListTile();
+          }),
     );
   }
 }
