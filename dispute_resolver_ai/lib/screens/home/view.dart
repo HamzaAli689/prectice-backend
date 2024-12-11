@@ -1,3 +1,4 @@
+import 'package:dispute_resolver_ai/models/users.dart';
 import 'package:dispute_resolver_ai/screens/login_screen/logic.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,25 +61,32 @@ class HomePage extends StatelessWidget {
   }
 
   showUser(context) {
-    return Container(
-      height: 800,
-      width: 600,
-      child: ListView.builder(
-          itemCount: logic.myusers.length,
-          itemBuilder: (context, i) {
-            return ListTile(
-              leading: ClipOval(
-                child: Container(
-                  margin: EdgeInsets.all(15),
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                  child: Image.network(logic.myusers[i].imageUrl ??
-                      "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"),
-                ),
-              ),
-            );
-          }),
+    return FutureBuilder(
+      future: logic.GetUserFromFirebase(),
+      builder: (context, AsyncSnapshot<List<MyUsers>>snapshot) {
+        if(snapshot.hasData){
+          return Container(
+            height: 800,
+            width: 600,
+            decoration: BoxDecoration(color: Colors.green),
+            child: ListView.builder(
+                itemCount: logic.myusers.length,
+                itemBuilder: (context, i) {
+                  return ListTile(
+                    leading:  Image.network(logic.myusers[i].imageUrl ??
+                          "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"),
+
+                  );
+                }),
+          );
+        }
+        else{
+          return Center(
+            child: CircularProgressIndicator(color: Colors.red,),
+          );
+        }
+
+      }
     );
   }
 }
