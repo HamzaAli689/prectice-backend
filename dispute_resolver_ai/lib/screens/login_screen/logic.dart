@@ -35,7 +35,7 @@ class Login_screenLogic extends GetxController {
           id: myUserId,
           name: usercontroller.text.trim(),
           imageUrl: myProfileImageUrl,
-          createdAt: DateTime.now(),
+          createdAt: DateTime.now().toString(),
         );
 
         await FirebaseFirestore.instance
