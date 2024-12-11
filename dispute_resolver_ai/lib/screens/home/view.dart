@@ -66,7 +66,18 @@ class HomePage extends StatelessWidget {
       child: ListView.builder(
           itemCount: logic.myusers.length,
           itemBuilder: (context, i) {
-            return ListTile();
+            return ListTile(
+              leading: ClipOval(
+                child: Container(
+                  margin: EdgeInsets.all(15),
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
+                  child: Image.network(logic.myusers[i].imageUrl ??
+                      "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"),
+                ),
+              ),
+            );
           }),
     );
   }
