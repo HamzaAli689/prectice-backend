@@ -5,16 +5,10 @@ import 'package:get/get.dart';
 class HomeLogic extends GetxController {
   List<MyUsers> myusers = [];
 
-  // Fetch all users from Firebase
-  Future<List<MyUsers>> GetUserFromFirebase() async {
-    // Clear the list to avoid duplicate data
-    myusers.clear();
-
-    // Fetch data from Firestore
+  // Fetch all user from firebase
+ Future<List<MyUsers>> GetUserFromFirebase() async {
     QuerySnapshot myCollection =
-    await FirebaseFirestore.instance.collection("Users").get();
-
-    // Map Firestore data to the MyUsers model
+        await FirebaseFirestore.instance.collection("Users").get();
     for (var element in myCollection.docs) {
       MyUsers mydata = MyUsers.fromJson(element.data() as Map<String, dynamic>);
       myusers.add(mydata);
@@ -23,8 +17,11 @@ class HomeLogic extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onInit() async{
+    // TODO: implement onInit
     super.onInit();
-    GetUserFromFirebase();
+    myusers.forEach((e){
+      print(e.name);
+    });
   }
 }
