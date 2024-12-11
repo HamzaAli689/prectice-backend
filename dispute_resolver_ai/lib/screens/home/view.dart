@@ -62,31 +62,37 @@ class HomePage extends StatelessWidget {
 
   showUser(context) {
     return FutureBuilder(
-      future: logic.GetUserFromFirebase(),
-      builder: (context, AsyncSnapshot<List<MyUsers>>snapshot) {
-        if(snapshot.hasData){
-          return Container(
-            height: 800,
-            width: 600,
-            decoration: BoxDecoration(color: Colors.green),
-            child: ListView.builder(
-                itemCount: logic.myusers.length,
-                itemBuilder: (context, i) {
-                  return ListTile(
-                    leading:  Image.network(logic.myusers[i].imageUrl ??
-                          "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"),
-
-                  );
-                }),
-          );
-        }
-        else{
-          return Center(
-            child: CircularProgressIndicator(color: Colors.red,),
-          );
-        }
-
-      }
-    );
+        future: logic.GetUserFromFirebase(),
+        builder: (context, AsyncSnapshot<List<MyUsers>> snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+              height: 800,
+              width: 600,
+              decoration: BoxDecoration(color: Colors.green),
+              child: ListView.builder(
+                  itemCount: logic.myusers.length,
+                  itemBuilder: (context, i) {
+                    return Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: ListTile(
+                        leading: Image.network(
+                          logic.myusers[i].imageUrl ??
+                              "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg",
+                          fit: BoxFit.cover,
+                          width: 100,
+                          height: 100,
+                        ),
+                      ),
+                    );
+                  }),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.red,
+              ),
+            );
+          }
+        });
   }
 }
