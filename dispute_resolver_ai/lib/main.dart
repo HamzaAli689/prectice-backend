@@ -1,3 +1,4 @@
+
 import 'package:dispute_resolver_ai/screens/home/view.dart';
 import 'package:dispute_resolver_ai/screens/login_screen/view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,4 +36,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
 
