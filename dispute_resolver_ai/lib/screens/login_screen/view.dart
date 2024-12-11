@@ -162,7 +162,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
             myfunction: () async {
               if (bytesFromPicker != null) {
                 String? profileImageUrl =
-                await uploadImage(bytesFromPicker!, "HamzaAli");
+                await uploadImage(bytesFromPicker!, "myProfileImages${logic.usercontroller.text}");
                 if (profileImageUrl != null) {
                   await logic.createUserOnFirebase(profileImageUrl);
                 } else {
