@@ -2,7 +2,7 @@ class MyUsers {
   String id;
   String name;
   String? imageUrl;
-  String? createdAt;
+  int? createdAt;
 
   MyUsers({required this.id, required this.name, this.imageUrl, this.createdAt});
 
@@ -22,7 +22,7 @@ class MyUsers {
       id: json['id'] as String,
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String?,
-      createdAt: json['createdAt'].toString(),
+      createdAt: json['createdAt'].int,
     );
   }
 }
