@@ -45,6 +45,7 @@ dependencies:
   image_picker:
   image_picker_web:
   http:
+  intl: ^0.20.1
 
 dev_dependencies:
   flutter_test:
