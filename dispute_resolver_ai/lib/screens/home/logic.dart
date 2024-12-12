@@ -24,4 +24,6 @@ class HomeLogic extends GetxController {
       print(e.name);
     });
   }
+
+
 }
