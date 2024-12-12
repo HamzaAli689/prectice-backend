@@ -2,7 +2,7 @@ import 'package:dispute_resolver_ai/models/users.dart';
 import 'package:dispute_resolver_ai/screens/login_screen/logic.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:intl/intl.dart';
 import '../common_widgets/alertDailog.dart';
 import 'logic.dart';
 
@@ -72,16 +72,23 @@ class HomePage extends StatelessWidget {
               child: ListView.builder(
                   itemCount: logic.myusers.length,
                   itemBuilder: (context, i) {
+                    DateTime datetime = DateTime.parse(logic.myusers[i].createdAt.toString());
+                    String Date = DateFormat("EEEE, dd MMMM yyyy").format(datetime);
+                    String TIme = DateFormat("hh:mm:ss a").format(datetime);
                     return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ListTile(
-                        leading: Image.network(
-                          logic.myusers[i].imageUrl ??
-                              "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg",
-                          fit: BoxFit.cover,
-                          width: 100,
-                          height: 100,
+                        leading: ClipOval(
+                          child: Image.network(
+                            logic.myusers[i].imageUrl ??
+                                "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg",
+                            fit: BoxFit.cover,
+                            width: 50,
+                            height: 100,
+                          ),
                         ),
+                        title: Text(logic.myusers[i].name.toUpperCase()),
+                        subtitle: Text("$Date $TIme"),
                       ),
                     );
                   }),
