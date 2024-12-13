@@ -22,7 +22,7 @@ class MyUsers {
       id: json['id'] as String,
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String?,
-      createdAt: json['createdAt'].int,
+      createdAt: json['createdAt'],
     );
   }
 }
