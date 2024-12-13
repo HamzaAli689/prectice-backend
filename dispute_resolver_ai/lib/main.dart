@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      //home: HomePage(),
-      home: LoginScreenPage(),
+      home: HomePage(),
+      //home: LoginScreenPage(),
     );
   }
 }
