@@ -10,14 +10,14 @@ class Login_screenLogic extends GetxController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   TextEditingController emailC = TextEditingController();
-  TextEditingController passcontroller = TextEditingController();
+  TextEditingController passC = TextEditingController();
   TextEditingController usercontroller = TextEditingController();
 
   RxBool issignin = true.obs;
 
   // Sign Up with Firebase Function
   Future<void> createUserOnFirebase(String myProfileImageUrl) async {
-    if (emailC.text.isEmpty || passcontroller.text.isEmpty) {
+    if (emailC.text.isEmpty || passC.text.isEmpty) {
       Get.snackbar("Error", "Email and Password cannot be empty.");
       return;
     }
@@ -25,7 +25,7 @@ class Login_screenLogic extends GetxController {
     try {
       UserCredential myUser = await _firebaseAuth.createUserWithEmailAndPassword(
         email: emailC.text.trim(),
-        password: passcontroller.text.trim(),
+        password: passC.text.trim(),
       );
 
       if (myUser.user != null) {
@@ -54,7 +54,7 @@ class Login_screenLogic extends GetxController {
 
   // Login with Firebase Function
   Future<void> loginUser() async {
-    if (emailC.text.isEmpty || passcontroller.text.isEmpty) {
+    if (emailC.text.isEmpty || passC.text.isEmpty) {
       Get.snackbar("Error", "Email and Password cannot be empty.");
       return;
     }
@@ -62,7 +62,7 @@ class Login_screenLogic extends GetxController {
     try {
       UserCredential myUser = await _firebaseAuth.signInWithEmailAndPassword(
         email: emailC.text.trim(),
-        password: passcontroller.text.trim(),
+        password: passC.text.trim(),
       );
 
       if (myUser.user != null) {

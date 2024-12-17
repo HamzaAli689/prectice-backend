@@ -75,7 +75,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
           ),
           const Gap(16),
           myText_fields(
-            mycontroller: logic.passcontroller,
+            mycontroller: logic.passC,
             lable: 'Enter Password',
           ),
           const Gap(16),
@@ -154,7 +154,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
           ),
           const Gap(16),
           myText_fields(
-            mycontroller: logic.passcontroller,
+            mycontroller: logic.passC,
             lable: 'Enter Password',
           ),
           const Gap(16),
