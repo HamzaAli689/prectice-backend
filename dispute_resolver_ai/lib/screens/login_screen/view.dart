@@ -70,7 +70,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
           ),
           const Gap(16),
           myText_fields(
-            mycontroller: logic.emailcontroller,
+            mycontroller: logic.emailC,
             lable: 'Enter Email',
           ),
           const Gap(16),
@@ -149,7 +149,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
           ),
           const Gap(16),
           myText_fields(
-            mycontroller: logic.emailcontroller,
+            mycontroller: logic.emailC,
             lable: 'Enter Email',
           ),
           const Gap(16),

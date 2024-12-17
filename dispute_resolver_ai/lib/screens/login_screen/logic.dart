@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class Login_screenLogic extends GetxController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController emailC = TextEditingController();
   TextEditingController passcontroller = TextEditingController();
   TextEditingController usercontroller = TextEditingController();
 
@@ -17,14 +17,14 @@ class Login_screenLogic extends GetxController {
 
   // Sign Up with Firebase Function
   Future<void> createUserOnFirebase(String myProfileImageUrl) async {
-    if (emailcontroller.text.isEmpty || passcontroller.text.isEmpty) {
+    if (emailC.text.isEmpty || passcontroller.text.isEmpty) {
       Get.snackbar("Error", "Email and Password cannot be empty.");
       return;
     }
 
     try {
       UserCredential myUser = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: emailcontroller.text.trim(),
+        email: emailC.text.trim(),
         password: passcontroller.text.trim(),
       );
 
@@ -54,14 +54,14 @@ class Login_screenLogic extends GetxController {
 
   // Login with Firebase Function
   Future<void> loginUser() async {
-    if (emailcontroller.text.isEmpty || passcontroller.text.isEmpty) {
+    if (emailC.text.isEmpty || passcontroller.text.isEmpty) {
       Get.snackbar("Error", "Email and Password cannot be empty.");
       return;
     }
 
     try {
       UserCredential myUser = await _firebaseAuth.signInWithEmailAndPassword(
-        email: emailcontroller.text.trim(),
+        email: emailC.text.trim(),
         password: passcontroller.text.trim(),
       );
 
