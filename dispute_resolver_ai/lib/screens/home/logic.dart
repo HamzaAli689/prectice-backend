@@ -18,14 +18,14 @@ class HomeLogic extends GetxController {
     return myusers;
   }
 
-  @override
-  void onInit() async{
-    // TODO: implement onInit
-    super.onInit();
-    myusers.forEach((e){
-      print(e.name);
-    });
-  }
+  // @override
+  // void onInit() async{
+  //   // TODO: implement onInit
+  //   super.onInit();
+  //   myusers.forEach((e){
+  //     print(e.name);
+  //   });
+  // }
 
 
 }
