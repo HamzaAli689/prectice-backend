@@ -11,7 +11,7 @@ class Login_screenLogic extends GetxController {
 
   TextEditingController emailC = TextEditingController();
   TextEditingController passC = TextEditingController();
-  TextEditingController usercontroller = TextEditingController();
+  TextEditingController userC = TextEditingController();
 
   RxBool issignin = true.obs;
 
@@ -33,14 +33,14 @@ class Login_screenLogic extends GetxController {
 
         MyUsers myUserData = MyUsers(
           id: myUserId,
-          name: usercontroller.text.trim(),
+          name: userC.text.trim(),
           imageUrl: myProfileImageUrl,
           createdAt: DateTime.now().microsecondsSinceEpoch,
         );
 
         await FirebaseFirestore.instance
             .collection("Users")
-            .doc(usercontroller.text.trim())
+            .doc(userC.text.trim())
             .set(myUserData.toJson());
 
         Get.to(() => HomePage(), transition: Transition.leftToRight);
