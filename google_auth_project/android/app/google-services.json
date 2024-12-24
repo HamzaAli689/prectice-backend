@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "955995175338",
+    "project_id": "loginapps-6cd94",
+    "storage_bucket": "loginapps-6cd94.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955995175338:android:a078f64c5e3fa9e6acd3d3",
+        "android_client_info": {
+          "package_name": "com.DisputeResolverAI.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0R2RWaXwfZJSM6TnDFztQtcmXpbsaGMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955995175338:android:9da797e5cec52fd9acd3d3",
+        "android_client_info": {
+          "package_name": "com.QrCodeScanner.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0R2RWaXwfZJSM6TnDFztQtcmXpbsaGMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955995175338:android:74cbbd037b98dbdbacd3d3",
+        "android_client_info": {
+          "package_name": "com.finetrack.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0R2RWaXwfZJSM6TnDFztQtcmXpbsaGMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955995175338:android:7d4692554198cb36acd3d3",
+        "android_client_info": {
+          "package_name": "com.google_authentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0R2RWaXwfZJSM6TnDFztQtcmXpbsaGMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955995175338:android:89cf9a0070ca8ab0acd3d3",
+        "android_client_info": {
+          "package_name": "com.login.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0R2RWaXwfZJSM6TnDFztQtcmXpbsaGMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
