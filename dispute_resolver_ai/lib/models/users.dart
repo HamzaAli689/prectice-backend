@@ -2,7 +2,7 @@ class MyUsers {
   String id;
   String name;
   String? imageUrl;
-  int? createdAt;
+  String? createdAt;
 
   MyUsers({required this.id, required this.name, this.imageUrl, this.createdAt});
 
