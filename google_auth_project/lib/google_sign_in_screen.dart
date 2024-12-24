@@ -34,7 +34,7 @@ class GoogleSignInScreen extends StatelessWidget {
               print("Sign-in failed");
             }
           },
-          child: Text("Sign in with Google"),
+          child: Text("Sign in with Google")
         ),
       ),
     );
