@@ -2,7 +2,7 @@ class MyUsers {
   String id;
   String name;
   String? imageUrl;
-  String? createdAt;
+  int? createdAt;
 
   MyUsers({required this.id, required this.name, this.imageUrl, this.createdAt});
 
@@ -18,11 +18,13 @@ class MyUsers {
 
   // Creates a User instance from a JSON map
   factory MyUsers.fromJson(Map<String, dynamic> json) {
+    DateTime mydate = DateTime.parse(json['createdAt']);
+    int mymicrosecodedate = mydate.microsecondsSinceEpoch;
     return MyUsers(
       id: json['id'] as String,
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String?,
-      createdAt: json['createdAt'],
+      createdAt: mymicrosecodedate,
     );
   }
 }
