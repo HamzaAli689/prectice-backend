@@ -16,7 +16,7 @@ class Login_screenLogic extends GetxController {
   RxBool issignin = true.obs;
 
   // Sign Up with Firebase Function
-  Future<void> createUserOnFirebase(String myProfileImageUrl) async {
+  Future<void> createUserOnFirebase(String? myProfileImageUrl) async {
     if (emailC.text.isEmpty || passC.text.isEmpty) {
       Get.snackbar("Error", "Email and Password cannot be empty.");
       return;
@@ -35,7 +35,7 @@ class Login_screenLogic extends GetxController {
           id: myUserId,
           name: userC.text.trim(),
           imageUrl: myProfileImageUrl,
-          createdAt: DateTime.now().microsecondsSinceEpoch,
+          createdAt: DateTime.now().toString(),
         );
 
         await FirebaseFirestore.instance
@@ -43,7 +43,7 @@ class Login_screenLogic extends GetxController {
             .doc(userC.text.trim())
             .set(myUserData.toJson());
 
-        Get.to(() => HomePage(), transition: Transition.leftToRight);
+        Get.to(() => HomePage(), transition: Transition.size,curve: Curves.bounceIn);
       }
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error", e.message ?? "An error occurred during signup.");
