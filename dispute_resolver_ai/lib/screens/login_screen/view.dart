@@ -122,7 +122,6 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
                 setState(() {});
               } else if (Platform.isAndroid || Platform.isIOS) {
                 print("This is a mobile platform");
-                // Implement mobile image picker if needed
               }
             },
             child: Container(
@@ -171,6 +170,7 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
               } else {
                 print("No image selected");
               }
+
             },
             mybtnwidget: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
