@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants.dart';
 import '../data/data.dart';
@@ -12,7 +13,7 @@ class DoctorsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getRelativeHeight(0.35),
+      height: getRelativeHeight(0.40),
       child: ListView.builder(
         itemCount: Data.doctorsList.length,
         scrollDirection: Axis.horizontal,
@@ -102,7 +103,7 @@ class DoctorsList extends StatelessWidget {
                           ],
                         ),
                         Container(
-                          height: getRelativeHeight(0.12),
+                          height: getRelativeHeight(0.18),
                           width: double.infinity,
                           decoration: const BoxDecoration(
                               color: Colors.white,

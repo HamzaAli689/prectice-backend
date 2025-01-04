@@ -18,7 +18,7 @@ class DoctorAppBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hi, Hammad",
+                "Hi, Hamza",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w800,

@@ -12,12 +12,12 @@ class CategoriesList extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
     return Container(
-      height: getRelativeHeight(0.085),
+      height: getRelativeHeight(0.110),
       child: ListView.builder(
         itemCount: Data.categoriesList.length,
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(
-          horizontal: getRelativeWidth(0.035),
+          horizontal: getRelativeWidth(0.045),
         ),
         itemBuilder: (context, index) {
           final category = Data.categoriesList[index];
