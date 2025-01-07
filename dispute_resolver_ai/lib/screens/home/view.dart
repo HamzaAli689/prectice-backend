@@ -78,22 +78,22 @@ class HomePage extends StatelessWidget {
                     String Date = DateFormat("EEEE, dd MMMM yyyy").format(datetime);
                     String TIme = DateFormat("hh:mm:ss a").format(datetime);
                     return FirebaseAuth.instance.currentUser!.uid == snapshot.data![i].id ?Container() :
-                        Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ListTile(
-                        leading: ClipOval(
-                          child: Image.network(
-                            snapshot.data![i].imageUrl ??
-                                "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg",
-                            fit: BoxFit.cover,
-                            width: 50,
-                            height: 100,
+                        ListTile(
+                          onTap: (){
+                           logic.createChatRoom(logic.myusers[i].id);
+                          },
+                          leading: ClipOval(
+                            child: Image.network(
+                              snapshot.data![i].imageUrl ??
+                                  "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg",
+                              fit: BoxFit.cover,
+                              width: 50,
+                              height: 100,
+                            ),
                           ),
-                        ),
-                        title: Text(snapshot.data![i].name.toUpperCase()),
-                        subtitle: Text("$Date $TIme"),
-                      ),
-                    );
+                          title: Text(snapshot.data![i].name.toUpperCase()),
+                          subtitle: Text("$Date $TIme"),
+                        );
                   }),
             );
           } else {
