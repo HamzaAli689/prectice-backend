@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dispute_resolver_ai/models/users.dart';
+import 'package:dispute_resolver_ai/screens/chat/view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class HomeLogic extends GetxController {
   List<MyUsers> myusers = [];
+  var myfbins = FirebaseAuth.instance;
+  var myfbfs = FirebaseFirestore.instance;
 
   // Fetch all user from firebase
  Future<List<MyUsers>> GetUserFromFirebase() async {
@@ -27,6 +31,31 @@ class HomeLogic extends GetxController {
    }
     return myusers;
   }
+
+
+  createChatRoom(String otherUserId) async{
+   print("other user id = $otherUserId");
+   print(myfbins.currentUser!.uid);
+   String chatRoomId = "${myfbins.currentUser!.uid}-$otherUserId";
+   print("My Chat Room Id is: $chatRoomId");
+
+   var mychatroomId = await myfbfs.collection("chats").doc(chatRoomId).get();
+   if(mychatroomId.exists){
+     //navigate to chatpage
+     Get.to(() => ChatPage());
+   }
+   else{
+     await myfbfs.collection("chats").doc(chatRoomId).set({
+       "chatRoom ID" : chatRoomId,
+       "TimeStamp" : DateTime.now(),
+     });
+     Get.to(() => ChatPage());
+   }
+
+
+
+  }
+
 
   @override
   void onInit() async{
