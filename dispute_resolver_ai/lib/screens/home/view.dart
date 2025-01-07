@@ -1,5 +1,6 @@
 import 'package:dispute_resolver_ai/models/users.dart';
 import 'package:dispute_resolver_ai/screens/login_screen/logic.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -76,7 +77,8 @@ class HomePage extends StatelessWidget {
                     DateTime datetime = DateTime.parse(snapshot.data![i].createdAt.toString());
                     String Date = DateFormat("EEEE, dd MMMM yyyy").format(datetime);
                     String TIme = DateFormat("hh:mm:ss a").format(datetime);
-                    return Padding(
+                    return FirebaseAuth.instance.currentUser!.uid == snapshot.data![i].id ?Container() :
+                        Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ListTile(
                         leading: ClipOval(
