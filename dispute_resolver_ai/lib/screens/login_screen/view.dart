@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:dispute_resolver_ai/screens/common_widgets/text_fields.dart';
 import 'package:dispute_resolver_ai/utilites/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,9 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import '../../utilites/globle_file.dart';
 import '../common_widgets/buttons.dart';
+import '../home/view.dart';
 import 'logic.dart';
 
 class LoginScreenPage extends StatefulWidget {
@@ -24,10 +27,26 @@ class _LoginScreenPageState extends State<LoginScreenPage> {
   final Login_screenLogic logic = Get.put(Login_screenLogic());
   Uint8List? bytesFromPicker;
 
+  Future<void> checkSignedIn() async{
+    User? user = FirebaseAuth.instance.currentUser;
+    if(user != null){
+      Future.delayed(Duration(seconds: 1));
+      WidgetsBinding.instance!.addPostFrameCallback((_){
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      });
+    }
+  }
+  @override
+
+void initState(){
+    super.initState();
+    checkSignedIn();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final screenType = ResponsiveBreakpoints.of(context);
-
     return Scaffold(
       backgroundColor: Colors.yellow,
       body: screenType.largerThan(TABLET)
